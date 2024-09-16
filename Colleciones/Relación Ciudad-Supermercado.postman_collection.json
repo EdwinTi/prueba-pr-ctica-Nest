@@ -1,0 +1,223 @@
+{
+	"info": {
+		"_postman_id": "17f6372c-de52-461a-b188-fa36d758fc26",
+		"name": "Relación Ciudad-Supermercado (Español)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27173422"
+	},
+	"item": [
+		{
+			"name": "Asociar un nuevo supermercado a una ciudad",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/ciudades/1/supermercados/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"ciudades",
+						"1",
+						"supermercados",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar un supermercado que no existe a una ciudad",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/ciudades/1/supermercados/99999",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"ciudades",
+						"1",
+						"supermercados",
+						"99999"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los supermercados que pertenecen a una ciudad",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/ciudades/1/supermercados",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"ciudades",
+						"1",
+						"supermercados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un supermercado asociado a una ciudad",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/ciudades/1/supermercados/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"ciudades",
+						"1",
+						"supermercados",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un supermercado que no está asociado a una ciudad",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/ciudades/1/supermercados/99999",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"ciudades",
+						"1",
+						"supermercados",
+						"99999"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar los supermercados que están asociados a una ciudad",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n  \"supermarketIds\": [1, 2, 3]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/ciudades/1/supermercados",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"ciudades",
+						"1",
+						"supermercados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar los supermercados asociados a una ciudad, con un supermercado inexistente",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"supermarketIds\": [1]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/ciudades/1/supermercados",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"ciudades",
+						"1",
+						"supermercados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un supermercado asociado a una ciudad",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/ciudades/1/supermercados/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"ciudades",
+						"1",
+						"supermercados",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un supermercado que no estaba previamente asociado a una ciudad",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/ciudades/1/supermercados/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"ciudades",
+						"1",
+						"supermercados",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -5,6 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CiudadModule } from './ciudad/ciudad.module';
 import { SupermercadoModule } from './supermercado/supermercado.module';
 import { CiudadSupermercadoModule } from './ciudad-supermercado/ciudad-supermercado.module';
+import { Ciudad } from './ciudad/ciudad.entity'; 
+import { Supermercado} from './supermercado/supermercado.entity'; 
 
 @Module({
   imports: [
@@ -15,7 +17,7 @@ import { CiudadSupermercadoModule } from './ciudad-supermercado/ciudad-supermerc
       username: 'postgres',
       password: 'postgres',
       database: 'gastronomia',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      entities: [ Ciudad, Supermercado  ],
       dropSchema: true,
       synchronize: true,
       keepConnectionAlive: true}
@@ -25,3 +27,6 @@ import { CiudadSupermercadoModule } from './ciudad-supermercado/ciudad-supermerc
   providers: [AppService],
 })
 export class AppModule {}
+
+
+

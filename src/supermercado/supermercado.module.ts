@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Supermercado } from './Supermercado.entity';
+import { Supermercado } from './supermercado.entity';
 import { SupermercadoService } from './supermercado.service';
 import { SupermercadoController } from './supermercado.controller';
 

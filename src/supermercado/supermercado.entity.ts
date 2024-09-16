@@ -1,4 +1,3 @@
-// supermercado.entity.ts
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from 'typeorm';
 import { Ciudad } from '../ciudad/ciudad.entity';
 

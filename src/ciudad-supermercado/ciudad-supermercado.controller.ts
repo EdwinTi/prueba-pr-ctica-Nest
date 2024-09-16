@@ -23,9 +23,13 @@ export class CiudadSupermercadoController {
   }
 
   @Put()
-  async updateSupermarketsFromCity(@Param('cityId') cityId: number, @Body() supermarketIds: number[]): Promise<Ciudad> {
+  async updateSupermarketsFromCity(
+    @Param('cityId') cityId: number, 
+    @Body('supermarketIds') supermarketIds: number[]
+  ): Promise<Ciudad> {
     return await this.ciudadSupermercadoService.updateSupermarketsFromCity(cityId, supermarketIds);
   }
+  
 
   @Delete(':supermarketId')
   async deleteSupermarketFromCity(@Param('cityId') cityId: number, @Param('supermarketId') supermarketId: number): Promise<Ciudad> {

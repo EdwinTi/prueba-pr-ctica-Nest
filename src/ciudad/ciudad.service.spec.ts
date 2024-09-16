@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { NotFoundException } from '@nestjs/common';
+import { NotFoundException, BadRequestException } from '@nestjs/common';
 import { CiudadService } from './ciudad.service';
 import { Ciudad } from './ciudad.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
@@ -68,13 +68,31 @@ describe('CiudadService', () => {
       expect(result.pais).toBe(ciudadData.pais);
     });
 
-    it('should throw an error if country is not valid', async () => {
+    it('should throw BadRequestException if country is not valid', async () => {
       const ciudadData = { 
         nombre: faker.address.city(), 
         pais: 'USA',  // País no permitido según la lógica de validación
         numeroHabitantes: 9999 
       };
-      await expect(service.create(ciudadData)).rejects.toThrow('El país no está en la lista permitida');
+      await expect(service.create(ciudadData)).rejects.toThrow(new BadRequestException('El país proporcionado no está en la lista permitida'));
+    });
+
+    it('should throw BadRequestException if name is empty', async () => {
+      const ciudadData = { 
+        nombre: '',  // Nombre vacío
+        pais: 'Ecuador',
+        numeroHabitantes: 9999 
+      };
+      await expect(service.create(ciudadData)).rejects.toThrow(new BadRequestException('El nombre de la ciudad no puede estar vacío'));
+    });
+
+    it('should throw BadRequestException if number of inhabitants is less than or equal to zero', async () => {
+      const ciudadData = { 
+        nombre: faker.address.city(), 
+        pais: 'Ecuador',
+        numeroHabitantes: 0  // Número de habitantes inválido
+      };
+      await expect(service.create(ciudadData)).rejects.toThrow(new BadRequestException('El número de habitantes debe ser mayor que cero'));
     });
   });
 
@@ -95,10 +113,16 @@ describe('CiudadService', () => {
       await expect(service.update(nonExistentId, ciudadData)).rejects.toThrow(new NotFoundException(`Ciudad con ID ${nonExistentId} no encontrada`));
     });
 
-    it('should throw an error if country is not valid during update', async () => {
+    it('should throw BadRequestException if country is not valid during update', async () => {
       const ciudadData = { pais: 'USA' };  // País no permitido
-      await expect(service.update(ciudad.id, ciudadData)).rejects.toThrow('El país no está en la lista permitida');
+      await expect(service.update(ciudad.id, ciudadData)).rejects.toThrow(new BadRequestException('El país no está en la lista permitida'));
     });
+
+    it('should throw BadRequestException if name is empty during update', async () => {
+      const ciudadData = { nombre: ' ' };  // Nombre vacío
+      await expect(service.update(ciudad.id, ciudadData)).rejects.toThrow(new BadRequestException('El nombre de la ciudad no puede estar vacío'));
+    });
+    
   });
 
   describe('delete', () => {
